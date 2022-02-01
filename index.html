@@ -6,22 +6,25 @@
     <style>
         *{margin: 0;padding: 0;}
         canvas{
-            height: 100%;
-            width: 100%;
+            top: 30px;
             position: fixed;
         }
     </style>
 
 </head>
 <body>
-    <canvas>
+<canvas id="canvas" width="500" height="500"  ></canvas>
 
-    </canvas>
+<div>
+<button onclick="loop()">Start</button>
+<button onclick="stopGame()">Pause</button>
+<button onclick="restartGame()">Restart</button>
+</div>
 </body>
 </html>
-<script src="Bar.js"></script>
-<script src="Boost.js"></script>
-<script src="Ball.js"></script>
-<script src="js.js"></script>
+<script src="js/Bar.js"></script>
+<script src="js/Boost.js"></script>
+<script src="js/Ball.js"></script>
+<script src="js/js.js"></script>
 
 
