@@ -12,11 +12,25 @@ setBallLocation(x){
         this.y=x;
 }
     checkBallMetBar(){
-        if((this.y+this.r)>=bar.y&&this.x>=bar.x+bar.length/3&&this.x<=(bar.x+2*bar.length/3)){
+        if((this.y+this.r)>=bar.y&&this.x>=(bar.x+bar.length/3)&&this.x<=(bar.x+(2/3)*bar.length)){
             //bóng chạm giữa bar
             // this.y=context.canvas.height-this.r-29;
-            this.direction =2*Math.PI-this.direction;
-            return 1;
+            let a=this.direction;
+            if(this.direction>0&&this.direction<=0.25*Math.PI){
+                //bóng từ phía trái xiên 0<x<=0.25
+                this.direction=1.5*Math.PI+a/2;
+                return 1;
+            }
+            else if(this.direction>=0.75*Math.PI&&this.direction<Math.PI){
+                //bóng từ phía phải xiên 0.75<=x<1
+                this.direction=Math.PI+a/2;
+                return 1;
+            }
+            else {
+                //bóng từ phía trái hoặc phải gần vuông góc 0.25<x<0.75
+                this.direction=1.75*Math.PI-a/2;
+                return  1;
+            }
         }
         if((this.y+this.r)>=bar.y&&this.x>=bar.x&&this.x<(bar.x+bar.length/3)){
             //bóng chạm mé trái bar
@@ -24,7 +38,7 @@ setBallLocation(x){
             this.direction =1.2*Math.PI;
             return 1;
         }
-        if((this.y+this.r)>=bar.y&&this.x>bar.x+2*bar.length/3&&this.x<=(bar.x+bar.length)){
+        if((this.y+this.r)>=bar.y&&this.x>(bar.x+(2/3)*bar.length)&&this.x<=(bar.x+bar.length)){
             //bóng chạm mé phải bar
             // this.y=context.canvas.height-this.r-29;
             this.direction =1.8*Math.PI;
