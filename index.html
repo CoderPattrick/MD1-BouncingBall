@@ -6,8 +6,14 @@
     <style>
         *{margin: 0;padding: 0;}
         canvas{
-            top: 30px;
+            top: 65px;
             position: fixed;
+        }
+        button{
+            height: 23px;
+            width: 80px;
+            color: aliceblue;
+            background-color: crimson;
         }
     </style>
 
@@ -15,16 +21,15 @@
 <body>
 <canvas id="canvas" width="500" height="500"  ></canvas>
 
-<div>
-<button onclick="loop()">Start</button>
-<button onclick="stopGame()">Pause</button>
-<button onclick="restartGame()">Restart</button>
-</div>
+<div id="buttonStart"></div>
+<div><button onclick="stopGame()">Pause</button></div>
+<input type="button" onclick="restartGame()" value="Restart"/>
 </body>
 </html>
 <script src="js/Bar.js"></script>
 <script src="js/Boost.js"></script>
 <script src="js/Ball.js"></script>
+<script src="js/Obstacle.js"></script>
 <script src="js/js.js"></script>
 
 

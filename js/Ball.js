@@ -8,7 +8,9 @@ class Ball {
         this.direction = 1.55*Math.PI;
         //vector(hướng đi) của bóng, tính bằng góc (360=2PI)
     }
-
+setBallLocation(x){
+        this.y=x;
+}
     checkBallMetBar(){
         if((this.y+this.r)>=bar.y&&this.x>=bar.x+bar.length/3&&this.x<=(bar.x+2*bar.length/3)){
             //bóng chạm giữa bar
@@ -37,6 +39,12 @@ class Ball {
         context.fill();
         this.updatePosition();
     }
+    drawBallStart(){
+        context.fillStyle = ball.color;
+        context.beginPath();
+        context.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI);
+        context.fill();
+    }
     updatePosition(){
         this.x+=Math.cos(this.direction)*this.speed;
         this.y+=Math.sin(this.direction)*this.speed;
@@ -62,7 +70,11 @@ class Ball {
         }
     }
 }
-let ball = new Ball(250,280,10);
+
+let ball = new Ball(250,0,7);
+let ballStartLocation = 0;
+ballStartLocation = bar.y-ball.r;
+ball.setBallLocation(ballStartLocation);
 let checkRelease =false;
 let ballDefaultSpeed =0;
 function colorBall(){
@@ -75,17 +87,19 @@ function colorBall(){
 
 
 function restartGame(){
-    context.canvas.height=500;
-    context.canvas.width=500;
-    drawBorder();
+    stopGame();
    ball.x=250;
-   ball.y=280;
-   ball.r=10;
+   ball.setBallLocation(ballStartLocation);
+   ball.r=7;
    ball.color=colorBall();
    ball.direction=1.55*Math.PI;
    ball.speed=2.7;
-   drawBar();
-   ball.drawBall();
-   stopGame();
-
+   bar.x=230;
+   bar.y=480;
+   bar.length=60;
+   bar.speed=3;
+   checkRelease=false;
+   checkMoveBall=0;
+   checkMove=0;
+   startGame();
 }
