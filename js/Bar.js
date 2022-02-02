@@ -5,8 +5,10 @@ let bar ={
     height:10,
     speed:3
 }
+//bar là duy nhất nên chỉ cần tạo 1obj bar
 let moveLeft,moveLeftBall,moveRight,moveRightBall,checkMove,checkMoveBall;
-
+//biến sử dụng để move ball và bar đồng thời khi mới bắt đầu game và chưa thả (release) ball
+//checkMove và checkMoveBall có 3 kiểu: 0-đứng yên,1-rẽ trái,2-rẽ phải
 function turnLeft(){
     checkMove=1;
     clearTimeout(moveRight);
@@ -35,10 +37,14 @@ function turnRightBall() {
 window.addEventListener("keydown",function (event){
     if (event.keyCode == 37){
         if(bar.x>=0){
+            //kiểm soát để ball k vượt khung trái
             if(checkPause==false){
+                //kiểm tra xem game bị pause không, nếu đã pause thì không kích hoạt function onclick
                 if(checkMove!=1){
+                    //kiểm tra xem đã bấm rẽ trái chưa, nếu bấm rồi thì không kích hoạt nữa để tránh trùng function gây lỗi boost tốc độ
                     turnLeft();
                     if(checkRelease==false){
+                        //kiểm tra bóng ở trạng thái đã release hay chưa(chưa release khi mới bắt đầu game), nếu chưa thì move bóng cùng với bar
                         if(checkMoveBall!=1) {
                             turnLeftBall();
                         }
@@ -48,6 +54,7 @@ window.addEventListener("keydown",function (event){
         }
     } else if (event.keyCode == 39){
         if(bar.x+bar.length<=500){
+            //kiểm soát để ball k vượt khung phải
             if(checkPause==false){
                 if(checkMove!=2){
                     turnRight();
