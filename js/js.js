@@ -2,6 +2,7 @@ let context = document.querySelector("canvas").getContext('2d');
 let running = null;
 let starting = null;
 let checkPause = null;
+let checkGameOver=false;
 
 function loop(){
     cancelAnimationFrame(starting);
@@ -24,14 +25,27 @@ function addButtonStart(){
     let a = '<button onclick="start1()">Start</button>'
     document.getElementById("buttonStart").innerHTML=a;
 }
+function addButtonStart2(){
+    let a = '<button onclick="start2()">Start</button>'
+    document.getElementById("buttonStart").innerHTML=a;
+}
+
 function addButtonStartFake(){
     let a = '<button>Start</button>'
     document.getElementById("buttonStart").innerHTML=a;
 }
 addButtonStart()
 function start1(){
+    checkGameOver=false;
     addButtonStartFake();
+    showScoreInProcess();
     startGame();
+}
+function start2(){
+    checkGameOver=false;
+    addButtonStartFake();
+    showScoreInProcess();
+    restartGame();
 }
 function startGame(){
     checkPause = false;
@@ -53,14 +67,16 @@ function startGame(){
     }
 }
 function stopGame(){
-    addButtonStart();
-    cancelAnimationFrame(running);
-    cancelAnimationFrame(starting);
-    clearTimeout(moveLeft);
-    clearTimeout(moveRight);
-    clearTimeout(moveLeftBall);
-    clearTimeout(moveRightBall);
-    checkPause = true;
+    if(checkGameOver==false) {
+        addButtonStart();
+        cancelAnimationFrame(running);
+        cancelAnimationFrame(starting);
+        clearTimeout(moveLeft);
+        clearTimeout(moveRight);
+        clearTimeout(moveLeftBall);
+        clearTimeout(moveRightBall);
+        checkPause = true;
+    }
 }
 function drawBorder(){
     context.beginPath();
@@ -86,4 +102,4 @@ function checkBarPosition() {
 }
 
 drawBorder();
-
+showScoreInProcess();

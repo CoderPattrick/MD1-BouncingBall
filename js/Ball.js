@@ -32,6 +32,8 @@ class Ball {
                         if(listObstacle[i][j].hp==0){
                             listObstacle[i].splice(j,1);
                         }
+                        plusScore();
+                        showScoreInProcess();
                         return 1;
                     }
                     if((this.y-this.r)<ObBot && (this.y-this.r)>=(ObBot-this.speed-1) && Math.PI<this.direction<2*Math.PI){
@@ -42,6 +44,8 @@ class Ball {
                         if(listObstacle[i][j].hp==0){
                             listObstacle[i].splice(j,1);
                         }
+                        plusScore();
+                        showScoreInProcess();
                         return 1;
                     }
                 }
@@ -55,6 +59,8 @@ class Ball {
                             if(listObstacle[i][j].hp==0){
                                 listObstacle[i].splice(j,1);
                             }
+                            plusScore();
+                            showScoreInProcess();
                             return 1;
                         }
                     }
@@ -69,6 +75,8 @@ class Ball {
                             if(listObstacle[i][j].hp==0){
                                 listObstacle[i].splice(j,1);
                             }
+                            plusScore();
+                            showScoreInProcess();
                             return 1;
                         }
                     }
@@ -172,8 +180,12 @@ if((this.y+this.r)>=bar.y&&this.x>=(bar.x+6*bar.length/7)&&this.x<=(bar.x+bar.le
         }
         else if(this.y+this.r>context.canvas.height){
             //bóng chạm viền dưới
-            this.y=context.canvas.height-this.r;
-            this.direction =2*Math.PI-this.direction;
+            stopGame();
+            checkGameOver=true;
+            addButtonStart2();
+            updateScore();
+            showHighScore();
+            subScore=0;
         }
     }
 }
