@@ -8,43 +8,74 @@ class Ball {
         this.direction = 1.55*Math.PI;
         //vector(hướng đi) của bóng, tính bằng góc (360=2PI)
     }
-setBallLocation(x){
+    setBallLocation(x){
         this.y=x;
 }
+    setBallDirection(x){
+        this.direction=x;
+    }
     checkBallMetBar(){
-        if((this.y+this.r)>=bar.y&&this.x>=(bar.x+bar.length/3)&&this.x<=(bar.x+(2/3)*bar.length)){
-            //bóng chạm giữa bar
-            // this.y=context.canvas.height-this.r-29;
-            let a=this.direction;
-            if(this.direction>0&&this.direction<=0.25*Math.PI){
-                //bóng từ phía trái xiên 0<x<=0.25
-                this.direction=1.5*Math.PI+a/2;
-                return 1;
-            }
-            else if(this.direction>=0.75*Math.PI&&this.direction<Math.PI){
-                //bóng từ phía phải xiên 0.75<=x<1
-                this.direction=Math.PI+a/2;
-                return 1;
-            }
-            else {
-                //bóng từ phía trái hoặc phải gần vuông góc 0.25<x<0.75
-                this.direction=1.75*Math.PI-a/2;
-                return  1;
-            }
-        }
-        if((this.y+this.r)>=bar.y&&this.x>=bar.x&&this.x<(bar.x+bar.length/3)){
-            //bóng chạm mé trái bar
-            // this.y=context.canvas.height-this.r-29;
-            this.direction =1.2*Math.PI;
-            return 1;
-        }
-        if((this.y+this.r)>=bar.y&&this.x>(bar.x+(2/3)*bar.length)&&this.x<=(bar.x+bar.length)){
-            //bóng chạm mé phải bar
-            // this.y=context.canvas.height-this.r-29;
-            this.direction =1.8*Math.PI;
-            return 1;
-        }
-
+        // Physics Type:
+        // if((this.y+this.r)>=bar.y&&this.x>=(bar.x+bar.length/3)&&this.x<=(bar.x+(2/3)*bar.length)){
+        //     //bóng chạm giữa bar
+        //     let a=this.direction;
+        //     if(this.direction>0&&this.direction<=0.25*Math.PI){
+        //         //bóng từ phía trái xiên 0<x<=0.25
+        //         this.direction=1.5*Math.PI+a/2;
+        //         return 1;
+        //     }
+        //     else if(this.direction>=0.75*Math.PI&&this.direction<Math.PI){
+        //         //bóng từ phía phải xiên 0.75<=x<1
+        //         this.direction=Math.PI+a/2;
+        //         return 1;
+        //     }
+        //     else {
+        //         //bóng từ phía trái hoặc phải gần vuông góc 0.25<x<0.75
+        //         this.direction=1.75*Math.PI-a/2;
+        //         return  1;
+        //     }
+        // }
+        // if((this.y+this.r)>=bar.y&&this.x>=bar.x&&this.x<(bar.x+bar.length/3)){
+        //     //bóng chạm mé trái bar
+        //
+        //     this.direction =1.2*Math.PI;
+        //     return 1;
+        // }
+        // if((this.y+this.r)>=bar.y&&this.x>(bar.x+(2/3)*bar.length)&&this.x<=(bar.x+bar.length)){
+        //     //bóng chạm mé phải bar
+        //
+        //     this.direction =1.8*Math.PI;
+        //     return 1;
+        // }
+        //User Control Type: 7 field.
+if((this.y+this.r)>=bar.y&&this.x>=bar.x&&this.x<(bar.x+bar.length/7)){
+    this.setBallDirection(1.125*Math.PI);
+    return 1;
+}
+if((this.y+this.r)>=bar.y&&this.x>=(bar.x+bar.length/7)&&this.x<(bar.x+2*bar.length/7)){
+    this.setBallDirection(1.25*Math.PI);
+    return 1;
+}
+if((this.y+this.r)>=bar.y&&this.x>=(bar.x+2*bar.length/7)&&this.x<(bar.x+3*bar.length/7)){
+    this.setBallDirection(1.375*Math.PI);
+    return 1;
+}
+if((this.y+this.r)>=bar.y&&this.x>=(bar.x+3*bar.length/7)&&this.x<(bar.x+4*bar.length/7)){
+    this.setBallDirection(1.5*Math.PI);
+    return 1;
+}
+if((this.y+this.r)>=bar.y&&this.x>=(bar.x+4*bar.length/7)&&this.x<(bar.x+5*bar.length/7)){
+    this.setBallDirection(1.625*Math.PI);
+    return 1;
+}
+if((this.y+this.r)>=bar.y&&this.x>=(bar.x+5*bar.length/7)&&this.x<(bar.x+6*bar.length/7)){
+    this.setBallDirection(1.75*Math.PI);
+    return 1;
+}
+if((this.y+this.r)>=bar.y&&this.x>=(bar.x+6*bar.length/7)&&this.x<=(bar.x+bar.length)){
+    this.setBallDirection(1.875*Math.PI);
+    return 1;
+}
     }
     drawBall(){
         context.fillStyle = ball.color;
