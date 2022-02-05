@@ -10,9 +10,10 @@ function loop(){
     context.canvas.height=500;
     context.canvas.width=500;
     drawBorder();
-    draw1stObstacle();
-    draw2ndObstacle();
-    draw3rdObstacle();
+    drawObstacle();
+    // draw1stObstacle();
+    // draw2ndObstacle();
+    // draw3rdObstacle();
     ball.checkBallMetBar();
     ball.checkBallMeetObstacle();
     ball.drawBall();
@@ -39,9 +40,10 @@ function startGame(){
         context.canvas.height = 500;
         context.canvas.width = 500;
         drawBorder();
-        draw1stObstacle();
-        draw2ndObstacle();
-        draw3rdObstacle();
+        drawObstacle();
+        // draw1stObstacle();
+        // draw2ndObstacle();
+        // draw3rdObstacle();
         ball.drawBallStart();
         checkBarPosition();
         drawBar();

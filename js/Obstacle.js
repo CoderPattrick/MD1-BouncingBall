@@ -5,6 +5,25 @@ class Obstacle{
         this.hp=hp;
         this.lengthh = 70;
         this.height = 10;
+        this.color=null;
+    }
+    setColor(){
+        if(this.hp==1){
+            this.color='rgb(0,255,0)';
+        }
+        else if(this.hp==2){
+            this.color='rgb(0,0,255)';
+        }
+        else if(this.hp==3) {
+            this.color='rgb(255,0,0)';
+        }
+        else {
+            this.color='rgb(0,0,0)';
+        }
+    }
+    updateColorAndHPAfterHit(){
+        this.hp--;
+        this.setColor();
     }
 }
 let list1stObstacle=[];
@@ -35,38 +54,53 @@ function create3rd6obstacle(){
 create1st6obstacle();
 create2nd6obstacle();
 create3rd6obstacle();
+
 let listObstacle=[];
 listObstacle.push(list1stObstacle);
 listObstacle.push(list2ndObstacle);
 listObstacle.push(list3rdObstacle);
-function draw1stObstacleFunc(obj){
-    context.fillStyle = 'rgb(255,0,0)';
+function drawObstacleFunc(obj){
+    context.fillStyle = obj.color;
     context.beginPath();
     context.fillRect(obj.x, obj.y, obj.lengthh, obj.height);
     context.stroke();
 }
-function draw1stObstacle() {
-    for (let i = 0; i < 6; i++) {
-        draw1stObstacleFunc(list1stObstacle[i]);
-    }
-}function draw2ndObstacleFunc(obj){
-    context.fillStyle = 'rgb(0,0,255)';
-    context.beginPath();
-    context.fillRect(obj.x, obj.y, obj.lengthh, obj.height);
-    context.stroke();
-}
-function draw2ndObstacle() {
-    for (let i = 0; i < 6; i++) {
-        draw2ndObstacleFunc(list2ndObstacle[i]);
-    }
-}function draw3rdObstacleFunc(obj){
-    context.fillStyle = 'rgb(0,255,0)';
-    context.beginPath();
-    context.fillRect(obj.x, obj.y, obj.lengthh, obj.height);
-    context.stroke();
-}
-function draw3rdObstacle() {
-    for (let i = 0; i < 6; i++) {
-        draw3rdObstacleFunc(list3rdObstacle[i]);
+function drawObstacle(){
+    for (let i = 0; i < listObstacle.length; i++) {
+        for (let j = 0; j < listObstacle[i].length; j++) {
+            listObstacle[i][j].setColor();
+            drawObstacleFunc(listObstacle[i][j])
+        }
     }
 }
+// function draw1stObstacleFunc(obj){
+//     context.fillStyle = 'rgb(255,0,0)';
+//     context.beginPath();
+//     context.fillRect(obj.x, obj.y, obj.lengthh, obj.height);
+//     context.stroke();
+// }
+// function draw1stObstacle() {
+//     for (let i = 0; i < 6; i++) {
+//         draw1stObstacleFunc(list1stObstacle[i]);
+//     }
+// }function draw2ndObstacleFunc(obj){
+//     context.fillStyle = 'rgb(0,0,255)';
+//     context.beginPath();
+//     context.fillRect(obj.x, obj.y, obj.lengthh, obj.height);
+//     context.stroke();
+// }
+// function draw2ndObstacle() {
+//     for (let i = 0; i < 6; i++) {
+//         draw2ndObstacleFunc(list2ndObstacle[i]);
+//     }
+// }function draw3rdObstacleFunc(obj){
+//     context.fillStyle = 'rgb(0,255,0)';
+//     context.beginPath();
+//     context.fillRect(obj.x, obj.y, obj.lengthh, obj.height);
+//     context.stroke();
+// }
+// function draw3rdObstacle() {
+//     for (let i = 0; i < 6; i++) {
+//         draw3rdObstacleFunc(list3rdObstacle[i]);
+//     }
+// }
