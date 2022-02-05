@@ -3,7 +3,7 @@ class Obstacle{
         this.x=x;
         this.y=y;
         this.hp=hp;
-        this.length = 70;
+        this.lengthh = 70;
         this.height = 10;
     }
 }
@@ -42,7 +42,7 @@ listObstacle.push(list3rdObstacle);
 function draw1stObstacleFunc(obj){
     context.fillStyle = 'rgb(255,0,0)';
     context.beginPath();
-    context.fillRect(obj.x, obj.y, obj.length, obj.height);
+    context.fillRect(obj.x, obj.y, obj.lengthh, obj.height);
     context.stroke();
 }
 function draw1stObstacle() {
@@ -52,7 +52,7 @@ function draw1stObstacle() {
 }function draw2ndObstacleFunc(obj){
     context.fillStyle = 'rgb(0,0,255)';
     context.beginPath();
-    context.fillRect(obj.x, obj.y, obj.length, obj.height);
+    context.fillRect(obj.x, obj.y, obj.lengthh, obj.height);
     context.stroke();
 }
 function draw2ndObstacle() {
@@ -62,7 +62,7 @@ function draw2ndObstacle() {
 }function draw3rdObstacleFunc(obj){
     context.fillStyle = 'rgb(0,255,0)';
     context.beginPath();
-    context.fillRect(obj.x, obj.y, obj.length, obj.height);
+    context.fillRect(obj.x, obj.y, obj.lengthh, obj.height);
     context.stroke();
 }
 function draw3rdObstacle() {
