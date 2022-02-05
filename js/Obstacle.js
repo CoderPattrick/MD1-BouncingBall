@@ -35,6 +35,10 @@ function create3rd6obstacle(){
 create1st6obstacle();
 create2nd6obstacle();
 create3rd6obstacle();
+let listObstacle=[];
+listObstacle.push(list1stObstacle);
+listObstacle.push(list2ndObstacle);
+listObstacle.push(list3rdObstacle);
 function draw1stObstacleFunc(obj){
     context.fillStyle = 'rgb(255,0,0)';
     context.beginPath();

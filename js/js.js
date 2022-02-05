@@ -14,6 +14,7 @@ function loop(){
     draw2ndObstacle();
     draw3rdObstacle();
     ball.checkBallMetBar();
+    ball.checkBallMeetObstacle();
     ball.drawBall();
     checkBarPosition();
     drawBar();

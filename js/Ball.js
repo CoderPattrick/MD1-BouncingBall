@@ -14,6 +14,52 @@ class Ball {
     setBallDirection(x){
         this.direction=x;
     }
+    checkBallMeetObstacle(){
+        for (let i = 0; i < listObstacle.length; i++) {
+            for (let j = 0; j < listObstacle[i].length; j++) {
+                let ObStart = listObstacle[i][j].x;
+                let ObEnd = listObstacle[i][j].length;
+                let ObTop = listObstacle[i][j].y;
+                let ObBot = listObstacle[i][j].y+listObstacle[i][j].height;
+                if(this.x>=ObStart&&this.x<=(ObStart+ObEnd)){
+                    //bóng trong phạm vi theo trục x của Obstacle
+                    if((this.y+this.r)>ObTop&&(this.y+this.r)<ObBot&&this.direction<Math.PI){
+                        //bóng chạm mặt trên Obstacle
+                        //CancelAnimationRunning? có cần thiết?
+                        this.y=ObTop-this.r;
+                        this.direction =2*Math.PI-this.direction;
+                        return 1;
+                    }
+                    else if((this.y-this.r)<ObBot&&(this.y-this.r)>ObTop&&this.direction>Math.PI){
+                        //Bóng chạm mặt dưới Obstacle
+                        this.y=ObBot+this.r;
+                        this.direction =2*Math.PI-this.direction;
+                        return 1;
+                    }
+                }
+                else if(this.x+this.r>ObStart&&this.x+this.r<=(ObStart+this.speed)){
+                    if(this.y>=ObTop&&this.y<=ObBot){
+                        if(this.direction<0.5*Math.PI||this.direction>1.5*Math.PI){
+                            //Bóng chạm mé trái Obstacle
+                            this.x=ObStart-this.r;
+                            this.direction =Math.PI-this.direction;
+                            return 1;
+                        }
+                    }
+                }
+                else if(this.x-this.r<ObEnd&&this.x-this.r>=ObEnd-this.speed){
+                    if(this.y>=ObTop&&this.y<=ObBot){
+                        if(this.direction>0.5*Math.PI&&this.direction<1.5*Math.PI){
+                            //Bóng chạm mé Phải Obstacle
+                            this.x=ObEnd+this.r;
+                            this.direction =3*Math.PI-this.direction;
+                            return 1;
+                        }
+                    }
+                }
+            }
+            }
+    }
     checkBallMetBar(){
         // Physics Type:
         // if((this.y+this.r)>=bar.y&&this.x>=(bar.x+bar.length/3)&&this.x<=(bar.x+(2/3)*bar.length)){
