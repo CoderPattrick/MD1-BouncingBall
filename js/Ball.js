@@ -28,12 +28,20 @@ class Ball {
                         //CancelAnimationRunning? có cần thiết?
                         this.y=ObTop-this.r-1;
                         this.direction =2*Math.PI-this.direction;
+                        listObstacle[i][j].updateColorAndHPAfterHit();
+                        if(listObstacle[i][j].hp==0){
+                            listObstacle[i].splice(j,1);
+                        }
                         return 1;
                     }
                     if((this.y-this.r)<ObBot && (this.y-this.r)>=(ObBot-this.speed-1) && Math.PI<this.direction<2*Math.PI){
                         //Bóng chạm mặt dưới Obstacle
                         this.y=ObBot+this.r+1;
                         this.direction =2*Math.PI-this.direction;
+                        listObstacle[i][j].updateColorAndHPAfterHit();
+                        if(listObstacle[i][j].hp==0){
+                            listObstacle[i].splice(j,1);
+                        }
                         return 1;
                     }
                 }
@@ -43,6 +51,10 @@ class Ball {
                             //Bóng chạm mé trái Obstacle
                             this.x=ObStart-this.r-1;
                             this.direction =Math.PI-this.direction;
+                            listObstacle[i][j].updateColorAndHPAfterHit();
+                            if(listObstacle[i][j].hp==0){
+                                listObstacle[i].splice(j,1);
+                            }
                             return 1;
                         }
                     }
@@ -53,6 +65,10 @@ class Ball {
                             //Bóng chạm mé Phải Obstacle
                             this.x=ObEnd+this.r+1;
                             this.direction =3*Math.PI-this.direction;
+                            listObstacle[i][j].updateColorAndHPAfterHit();
+                            if(listObstacle[i][j].hp==0){
+                                listObstacle[i].splice(j,1);
+                            }
                             return 1;
                         }
                     }

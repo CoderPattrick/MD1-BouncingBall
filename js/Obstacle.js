@@ -7,7 +7,7 @@ class Obstacle{
         this.height = 10;
         this.color=null;
     }
-    setColor(){
+    getColor(){
         if(this.hp==1){
             this.color='rgb(0,255,0)';
         }
@@ -23,7 +23,7 @@ class Obstacle{
     }
     updateColorAndHPAfterHit(){
         this.hp--;
-        this.setColor();
+        this.getColor();
     }
 }
 let list1stObstacle=[];
@@ -68,7 +68,7 @@ function drawObstacleFunc(obj){
 function drawObstacle(){
     for (let i = 0; i < listObstacle.length; i++) {
         for (let j = 0; j < listObstacle[i].length; j++) {
-            listObstacle[i][j].setColor();
+            listObstacle[i][j].getColor();
             drawObstacleFunc(listObstacle[i][j])
         }
     }
