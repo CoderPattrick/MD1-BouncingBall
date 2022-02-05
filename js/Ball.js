@@ -195,6 +195,11 @@ function colorBall(){
 
 function restartGame(){
     stopGame();
+    listObstacle=[];
+    list1stObstacle=[];
+    list2ndObstacle=[];
+    list3rdObstacle=[];
+    setObstacle();
    ball.x=250;
    ball.setBallLocation(ballStartLocation);
    ball.r=7;
