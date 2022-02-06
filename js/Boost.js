@@ -23,9 +23,6 @@ class Boost{
             //boost chạy đến tầm bar
             if(bar.x<=(this.x+this.widthB)<=(bar.x+bar.length+this.widthB)){
                 //boost nằm trong phạm vi bar
-                console.log(bar.x);
-                console.log(this.x+this.widthB);
-                console.log(bar.x+bar.length+this.widthB);
                 if(this.name=='moreBall') {
                     plusBall();
                     for (let i = 0; i < boosts.length; i++) {
@@ -37,6 +34,16 @@ class Boost{
                 else if(this.name=='fastBall'){
                     for (let i = 0; i < balls.length; i++) {
                         balls[i].speed+=0.5;
+                    }
+                    for (let i = 0; i < boosts.length; i++) {
+                        if(boosts[i].x==this.x&&boosts[i].y==this.y){
+                            boosts.splice(i,1);
+                        }
+                    }
+                }
+                else if(this.name=='bigBall'){
+                    for (let i = 0; i < balls.length; i++) {
+                        balls[i].r+=0.5;
                     }
                     for (let i = 0; i < boosts.length; i++) {
                         if(boosts[i].x==this.x&&boosts[i].y==this.y){
@@ -100,20 +107,23 @@ function dropBoostMoreBall(x,y){
 function dropBoostFasterBall(x,y){
     boosts.push(new Boost('fastBall','',x,y,30,30));
 }
+function dropBoostBiggerBall(x,y){
+    boosts.push(new Boost('bigBall','',x,y,30,30));
+}
 function randomAddBoost(x,y){
     let a = Math.random()*30;
-    console.log(a);
-    if(a<=1){
+    if(a<=2){
         dropBoostMoreBall(x,y);
         return 1;
     }
-    if(a<=10){
+    if(a<=5){
         dropBoostFasterBall(x,y);
         return 1;
     }
-    // if(a<=3){
-    //     return 1;
-    // }
+    if(a<=7){
+        dropBoostBiggerBall(x,y);
+        return 1;
+    }
     // if(a<=4){
     //     return 1;
     // }
