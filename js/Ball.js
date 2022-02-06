@@ -197,6 +197,7 @@ if((this.y+this.r)>=bar.y&&this.x>=(bar.x+6*bar.length/7)&&this.x<=(bar.x+bar.le
                 addButtonStart2();
                 updateScore();
                 showHighScore();
+                document.getElementById("gameOver").innerText = 'GAME OVER';
                 subScore = 0;
             }
         }
@@ -246,5 +247,6 @@ function restartGame(){
    checkMove=0;
    subScore=0;
    showScoreInProcess();
+    document.getElementById("gameOver").innerText = '';
    startGame();
 }

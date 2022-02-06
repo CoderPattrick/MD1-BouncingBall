@@ -6,7 +6,7 @@
     <style>
         *{margin: 0;padding: 0;}
         canvas{
-            top: 85px;
+            top: 120px;
             position: fixed;
         }
         button{
@@ -15,19 +15,31 @@
             color: aliceblue;
             background-color: crimson;
         }
+        input{
+            width: 80px;
+        }
     </style>
 
 </head>
 <body>
 <canvas id="canvas" width="500" height="500"  ></canvas>
 
-<div id="buttonStart"></div>
+<span id="buttonStart"></span>
+<span>KindaMinus:<img id="shortBar" src="img/shorter1.png" style="width: 30px;height:20px" alt="img">ShorterBar;</span>
+<span><img id="slowBar" src="img/slow1.png" style="width: 30px;height:20px" alt="img">SlowerBar;</span>
 <div><button onclick="stopGame()">Pause</button>
-    <span ><img id="moreBall" style="width: 30px;height:30px" src="img/plus1.png" alt="img"></span>PlusBall
-    <span ></span>
+    <span >KindaBoost:<img id="moreBall" src="img/plus1.png" style="width: 30px;height:30px" alt="img">PlusBall;</span>
+    <span ><img id="fastBall" src="img/boostSpeed2.png" style="width: 30px;height:30px"  alt="img">FasterBall;</span>
+    <span ><img id="bigBall" src="img/boost1.png" style="width: 30px;height:20px" alt="img">BiggerBall__</span>
+    <span ><img id="fastBar" src="img/boostSpeed3.png" style="width: 30px;height:20px"  alt="img">FasterBar;</span>
+    <span ><img id="longBar" src="img/longer1.png" style="width: 30px;height:20px" alt="img">LongerBar;</span>
+
 </div>
-<input type="button" onclick="restartGame()" value="Restart"/>Use Left/Right Arrow to move Bar. Down Arrow to stop Bar. Up to release ball.
+<br>
+<input type="button" onclick="restartGame()" value="Restart"/> Use Left/Right Arrow to move Bar. Down Arrow to stop Bar. Up to release ball.
 <b><p style="left: 300px;font-size: 20px;" id="score">Score: </p></b>
+<br><br><br><br><br><br><br>
+<b><div id="gameOver" style="width:500px;text-align: center;font-size: 100px"></div></b>
 </body>
 </html>
 <script src="js/Bar.js"></script>
