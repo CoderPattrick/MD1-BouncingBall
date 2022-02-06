@@ -182,14 +182,23 @@ if((this.y+this.r)>=bar.y&&this.x>=(bar.x+6*bar.length/7)&&this.x<=(bar.x+bar.le
             this.y=this.r;
             this.direction =2*Math.PI-this.direction;
         }
-        else if(this.y+this.r>context.canvas.height){
+        else if(this.y+this.r>context.canvas.height) {
             //bóng chạm viền dưới
-            stopGame();
-            checkGameOver=true;
-            addButtonStart2();
-            updateScore();
-            showHighScore();
-            subScore=0;
+            for (let i = 0; i < balls.length; i++) {
+                if (balls[i].y + balls[i].r >= context.canvas.height) {
+                    balls.splice(i, 1);
+                    countBalls--;
+                    break;
+                }
+            }
+            if (countBalls <= 0) {
+                stopGame();
+                checkGameOver = true;
+                addButtonStart2();
+                updateScore();
+                showHighScore();
+                subScore = 0;
+            }
         }
     }
 }
@@ -214,17 +223,20 @@ function colorBall(){
 function restartGame(){
     checkGameOver=false;
     stopGame();
+    countBalls=1;
     listObstacle=[];
     list1stObstacle=[];
     list2ndObstacle=[];
     list3rdObstacle=[];
     setObstacle();
-   balls[0].x=250;
-   balls[0].setBallLocation(ballStartLocation);
-   balls[0].r=7;
-   balls[0].color=colorBall();
-   balls[0].direction=1.55*Math.PI;
-   balls[0].speed=2.7;
+   let tempBalls =[];
+   tempBalls.push(new Ball(250,0,7));
+   balls=tempBalls;
+    balls[0].setBallLocation(ballStartLocation);
+    balls[0].r=7;
+    balls[0].color=colorBall();
+    balls[0].direction=1.55*Math.PI;
+    balls[0].speed=2.7;
    bar.x=230;
    bar.y=480;
    bar.length=60;
@@ -232,6 +244,7 @@ function restartGame(){
    checkRelease=false;
    checkMoveBall=0;
    checkMove=0;
+   subScore=0;
    showScoreInProcess();
    startGame();
 }

@@ -12,18 +12,27 @@ class Boost{
         for (let i = 0; i < boosts.length; i++) {
             //need img source.
             let img = document.getElementById("moreBall");
-            context.drawImage(img,boosts[i].x,boosts[i].y);
+            context.drawImage(img,boosts[i].x,boosts[i].y,boosts[i].widthB,boosts[i].heightB);
             this.updateBoostPosition();
         }
     }
     updateBoostPosition(){
         this.y+=this.speed;
-        if(bar.y<=(this.y+this.heightB)<context.canvas.height){
+        if(bar.y<=(this.y+this.heightB)&&this.y<(bar.y+bar.height)){
             //boost chạy đến tầm bar
             if(bar.x<=(this.x+this.widthB)<=(bar.x+bar.length+this.widthB)){
                 //boost nằm trong phạm vi bar
+                console.log(bar.x);
+                console.log(this.x+this.widthB);
+                console.log(bar.x+bar.length+this.widthB);
                 if(this.name=='moreBall') {
-                    plusBall();}
+                    plusBall();
+                    for (let i = 0; i < boosts.length; i++) {
+                        if(boosts[i].x==this.x&&boosts[i].y==this.y){
+                            boosts.splice(i,1);
+                        }
+                    }
+                }
             }
         }
         if(this.y+this.heightB>context.canvas.height){
@@ -75,10 +84,11 @@ function plusBall(){
 }
 function dropBoostMoreBall(x,y){
     boosts.push(new Boost('moreBall','img/plus1.png',x,y,30,30));
+    countBalls++;
 }
 function randomAddBoost(x,y){
     let a = Math.random()*40;
-    if(a<=10){
+    if(a<=1){
         dropBoostMoreBall(x,y);
         return 1;
     }
