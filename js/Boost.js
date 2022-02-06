@@ -11,7 +11,8 @@ class Boost{
     drawBoost(){
         for (let i = 0; i < boosts.length; i++) {
             //need img source.
-            let img = document.getElementById("moreBall");
+            let boostKind=boosts[i].name;
+            let img = document.getElementById(boostKind);
             context.drawImage(img,boosts[i].x,boosts[i].y,boosts[i].widthB,boosts[i].heightB);
             this.updateBoostPosition();
         }
@@ -27,6 +28,16 @@ class Boost{
                 console.log(bar.x+bar.length+this.widthB);
                 if(this.name=='moreBall') {
                     plusBall();
+                    for (let i = 0; i < boosts.length; i++) {
+                        if(boosts[i].x==this.x&&boosts[i].y==this.y){
+                            boosts.splice(i,1);
+                        }
+                    }
+                }
+                else if(this.name=='fastBall'){
+                    for (let i = 0; i < balls.length; i++) {
+                        balls[i].speed+=0.5;
+                    }
                     for (let i = 0; i < boosts.length; i++) {
                         if(boosts[i].x==this.x&&boosts[i].y==this.y){
                             boosts.splice(i,1);
@@ -83,18 +94,23 @@ function plusBall(){
     balls[balls.length-1].setBallDirection(direction);
 }
 function dropBoostMoreBall(x,y){
-    boosts.push(new Boost('moreBall','img/plus1.png',x,y,30,30));
+    boosts.push(new Boost('moreBall','',x,y,30,30));
     countBalls++;
 }
+function dropBoostFasterBall(x,y){
+    boosts.push(new Boost('fastBall','',x,y,30,30));
+}
 function randomAddBoost(x,y){
-    let a = Math.random()*40;
+    let a = Math.random()*30;
+    console.log(a);
     if(a<=1){
         dropBoostMoreBall(x,y);
         return 1;
     }
-    // if(a<=2){
-    //     return 1;
-    // }
+    if(a<=10){
+        dropBoostFasterBall(x,y);
+        return 1;
+    }
     // if(a<=3){
     //     return 1;
     // }

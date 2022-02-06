@@ -247,6 +247,8 @@ function restartGame(){
    checkMove=0;
    subScore=0;
    showScoreInProcess();
+   boosts=[];
+   minusBoosts=[];
     document.getElementById("gameOver").innerText = '';
-   startGame();
+   start1();
 }
