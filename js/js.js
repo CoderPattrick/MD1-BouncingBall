@@ -15,9 +15,25 @@ function loop(){
     // draw1stObstacle();
     // draw2ndObstacle();
     // draw3rdObstacle();
-    ball.checkBallMetBar();
-    ball.checkBallMeetObstacle();
-    ball.drawBall();
+    for (let i = 0; i < balls.length; i++) {
+        balls[i].checkBallMetBar();
+        balls[i].checkBallMeetObstacle();
+        if(checkBallMetObstacle){
+            randomAddBoost(balls[i].x,balls[i].y);
+            checkBallMetObstacle=false;
+        }
+        balls[i].drawBall();
+    }
+    if(boosts.length>0) {
+        for (let i = 0; i < boosts.length; i++) {
+            boosts[i].drawBoost();
+        }
+    }
+    if(minusBoosts.length>0) {
+        for (let i = 0; i < minusBoosts.length; i++) {
+            minusBoosts[i].drawMinusBoost();
+        }
+    }
     checkBarPosition();
     drawBar();
 }
@@ -59,7 +75,7 @@ function startGame(){
         // draw2ndObstacle();
         // draw3rdObstacle();
         checkBallPositionStart();
-        ball.drawBallStart();
+        balls[0].drawBallStart();
         checkBarPosition();
         drawBar();
     }
@@ -96,9 +112,9 @@ function checkBarPosition() {
         clearTimeout(moveLeft);
         bar.x = 0;
     }
-    if (bar.x + bar.length > 500) {
+    if (bar.x + bar.length > context.canvas.width) {
         clearTimeout(moveRight);
-        bar.x = 500 - bar.length;
+        bar.x = context.canvas.width - bar.length;
     }
 }
 

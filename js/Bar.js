@@ -18,7 +18,7 @@ function turnLeft(){
 function turnLeftBall(){
     checkMoveBall=1;
     clearTimeout(moveRightBall);
-    ball.x-=bar.speed;
+    balls[0].x-=bar.speed;
     moveLeftBall = setTimeout(turnLeftBall,20);
 }
 function turnRight(){
@@ -30,7 +30,7 @@ function turnRight(){
 function turnRightBall() {
     checkMoveBall = 2;
     clearTimeout(moveLeftBall);
-    ball.x += bar.speed;
+    balls[0].x += bar.speed;
     moveRightBall = setTimeout(turnRightBall, 20);
 }
 
@@ -83,7 +83,7 @@ window.addEventListener("keydown",function (event){
                 cancelAnimationFrame(starting);
                 clearTimeout(moveRightBall);
                 clearTimeout(moveLeftBall);
-                ball.y--;
+                balls[0].y--;
                 loop();
             }
         }

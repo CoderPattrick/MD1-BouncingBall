@@ -9,7 +9,7 @@ class Obstacle{
     }
     getColor(){
         if(this.hp==1){
-            this.color='rgb(0,255,0)';
+            this.color='rgb(0,255,28)';
         }
         else if(this.hp==2){
             this.color='rgb(0,0,255)';

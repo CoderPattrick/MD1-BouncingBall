@@ -34,6 +34,7 @@ class Ball {
                         }
                         plusScore();
                         showScoreInProcess();
+                        checkBallMetObstacle=true;
                         return 1;
                     }
                     if((this.y-this.r)<ObBot && (this.y-this.r)>=(ObBot-this.speed-1) && Math.PI<this.direction<2*Math.PI){
@@ -46,6 +47,7 @@ class Ball {
                         }
                         plusScore();
                         showScoreInProcess();
+                        checkBallMetObstacle=true;
                         return 1;
                     }
                 }
@@ -61,6 +63,7 @@ class Ball {
                             }
                             plusScore();
                             showScoreInProcess();
+                            checkBallMetObstacle=true;
                             return 1;
                         }
                     }
@@ -77,6 +80,7 @@ class Ball {
                             }
                             plusScore();
                             showScoreInProcess();
+                            checkBallMetObstacle=true;
                             return 1;
                         }
                     }
@@ -148,16 +152,16 @@ if((this.y+this.r)>=bar.y&&this.x>=(bar.x+6*bar.length/7)&&this.x<=(bar.x+bar.le
 }
     }
     drawBall(){
-        context.fillStyle = ball.color;
+        context.fillStyle = this.color;
         context.beginPath();
-        context.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI);
+        context.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         context.fill();
         this.updatePosition();
     }
     drawBallStart(){
-        context.fillStyle = ball.color;
+        context.fillStyle = this.color;
         context.beginPath();
-        context.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI);
+        context.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         context.fill();
     }
     updatePosition(){
@@ -189,13 +193,15 @@ if((this.y+this.r)>=bar.y&&this.x>=(bar.x+6*bar.length/7)&&this.x<=(bar.x+bar.le
         }
     }
 }
-
-let ball = new Ball(250,0,7);
+let balls =[];
+balls.push(new Ball(250,0,7));
 let ballStartLocation = 0;
-ballStartLocation = bar.y-ball.r;
-ball.setBallLocation(ballStartLocation);
+ballStartLocation = bar.y-balls[0].r;
+balls[0].setBallLocation(ballStartLocation);
 let checkRelease =false;
 let ballDefaultSpeed =0;
+let countBalls=1;
+let checkBallMetObstacle=false;
 function colorBall(){
     let r,g,b;
     r=Math.floor(Math.random()*256);
@@ -206,18 +212,19 @@ function colorBall(){
 
 
 function restartGame(){
+    checkGameOver=false;
     stopGame();
     listObstacle=[];
     list1stObstacle=[];
     list2ndObstacle=[];
     list3rdObstacle=[];
     setObstacle();
-   ball.x=250;
-   ball.setBallLocation(ballStartLocation);
-   ball.r=7;
-   ball.color=colorBall();
-   ball.direction=1.55*Math.PI;
-   ball.speed=2.7;
+   balls[0].x=250;
+   balls[0].setBallLocation(ballStartLocation);
+   balls[0].r=7;
+   balls[0].color=colorBall();
+   balls[0].direction=1.55*Math.PI;
+   balls[0].speed=2.7;
    bar.x=230;
    bar.y=480;
    bar.length=60;
@@ -225,5 +232,6 @@ function restartGame(){
    checkRelease=false;
    checkMoveBall=0;
    checkMove=0;
+   showScoreInProcess();
    startGame();
 }
