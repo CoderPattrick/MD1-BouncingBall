@@ -9,21 +9,18 @@ class Boost{
         this.speed= 3;
     }
     drawBoost(){
-        for (let i = 0; i < boosts.length; i++) {
-            //need img source.
-            let boostKind=boosts[i].name;
-            let img = document.getElementById(boostKind);
-            context.drawImage(img,boosts[i].x,boosts[i].y,boosts[i].widthB,boosts[i].heightB);
+            let img = document.getElementById(this.name);
+            context.drawImage(img,this.x,this.y,this.widthB,this.heightB);
             this.updateBoostPosition();
-        }
     }
     updateBoostPosition(){
         this.y+=this.speed;
-        if(bar.y<=(this.y+this.heightB)&&this.y<(bar.y+bar.height)){
-            //boost chạy đến tầm bar
-            if(bar.x<=(this.x+this.widthB)<=(bar.x+bar.length+this.widthB)){
-                //boost nằm trong phạm vi bar
+        if((bar.y<=(this.y+this.heightB)) && (this.y<(bar.y+bar.height))){
+            //boost chạy đến tầm trục tung bar
+            if((bar.x<=(this.x+this.widthB))&&(this.x<=(bar.x+bar.length))){
+                //boost nằm trong phạm vi trục hoành bar
                 if(this.name=='moreBall') {
+                    countBalls++;
                     plusBall();
                     for (let i = 0; i < boosts.length; i++) {
                         if(boosts[i].x==this.x&&boosts[i].y==this.y){
@@ -43,7 +40,45 @@ class Boost{
                 }
                 else if(this.name=='bigBall'){
                     for (let i = 0; i < balls.length; i++) {
-                        balls[i].r+=0.5;
+                        if(balls[i].r<20) {
+                            balls[i].r++;
+                        }
+                    }
+                    for (let i = 0; i < boosts.length; i++) {
+                        if(boosts[i].x==this.x&&boosts[i].y==this.y){
+                            boosts.splice(i,1);
+                        }
+                    }
+                }
+                else if(this.name=='longBar'){
+                    bar.length+=10;
+                    for (let i = 0; i < boosts.length; i++) {
+                        if(boosts[i].x==this.x&&boosts[i].y==this.y){
+                            boosts.splice(i,1);
+                        }
+                    }
+                }
+                else if(this.name=='fastBar'){
+                    bar.speed++
+                    for (let i = 0; i < boosts.length; i++) {
+                        if(boosts[i].x==this.x&&boosts[i].y==this.y){
+                            boosts.splice(i,1);
+                        }
+                    }
+                }
+                else if(this.name=='shortBar'){
+                    if(bar.length>=50) {
+                        bar.length -= 20;
+                    }
+                    for (let i = 0; i < boosts.length; i++) {
+                        if(boosts[i].x==this.x&&boosts[i].y==this.y){
+                            boosts.splice(i,1);
+                        }
+                    }
+                }
+                else if(this.name=='slowBar'){
+                    if(bar.speed>=4) {
+                        bar.speed-=2;
                     }
                     for (let i = 0; i < boosts.length; i++) {
                         if(boosts[i].x==this.x&&boosts[i].y==this.y){
@@ -102,7 +137,6 @@ function plusBall(){
 }
 function dropBoostMoreBall(x,y){
     boosts.push(new Boost('moreBall','',x,y,30,30));
-    countBalls++;
 }
 function dropBoostFasterBall(x,y){
     boosts.push(new Boost('fastBall','',x,y,30,30));
@@ -110,9 +144,21 @@ function dropBoostFasterBall(x,y){
 function dropBoostBiggerBall(x,y){
     boosts.push(new Boost('bigBall','',x,y,30,30));
 }
+function dropBoostLongerBar(x,y){
+    boosts.push(new Boost('longBar','',x,y,30,20));
+}
+function dropBoostFasterBar(x,y){
+    boosts.push(new Boost('fastBar','',x,y,30,20));
+}
+function dropMinusShorterBar(x,y){
+    boosts.push(new MinusBoost('shortBar','',x,y,30,20));
+}
+function dropMinusSlowerBar(x,y){
+    boosts.push(new MinusBoost('slowBar','',x,y,30,20));
+}
 function randomAddBoost(x,y){
     let a = Math.random()*30;
-    if(a<=2){
+    if(a<=3){
         dropBoostMoreBall(x,y);
         return 1;
     }
@@ -124,18 +170,22 @@ function randomAddBoost(x,y){
         dropBoostBiggerBall(x,y);
         return 1;
     }
-    // if(a<=4){
-    //     return 1;
-    // }
-    // if(a<=5){
-    //     return 1;
-    // }
-    // if(a<=8){
-    //     return 1;
-    // }
-    // if(a<=11){
-    //     return 1;
-    // }
-    //
+    if(a<=9){
+        dropBoostLongerBar(x,y);
+        return 1;
+    }
+    if(a<=11){
+        dropBoostFasterBar(x,y);
+        return 1;
+    }
+    if(a<=16){
+        dropMinusShorterBar(x,y);
+        return 1;
+    }
+    if(a<=21){
+        dropMinusSlowerBar(x,y);
+        return 1;
+    }
+
 }
 

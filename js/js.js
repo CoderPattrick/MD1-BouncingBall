@@ -3,6 +3,7 @@ let running = null;
 let starting = null;
 let checkPause = null;
 let checkGameOver=false;
+let levelGame=1;
 
 function loop(){
     cancelAnimationFrame(starting);
@@ -18,6 +19,7 @@ function loop(){
     for (let i = 0; i < balls.length; i++) {
         balls[i].checkBallMetBar();
         balls[i].checkBallMeetObstacle();
+        checkWin();
         if(checkBallMetObstacle){
             randomAddBoost(balls[i].x,balls[i].y);
             checkBallMetObstacle=false;
@@ -62,6 +64,21 @@ function start2(){
     addButtonStartFake();
     showScoreInProcess();
     restartGame();
+}
+function addButtonStartLv2(){
+    addButtonStartFake();
+    showScoreInProcess();
+    resetObstacle();
+    setObstacleLv2();
+    let tempBalls =[];
+    tempBalls.push(new Ball(250,0,7));
+    balls=tempBalls;
+    balls[0].setBallLocation(ballStartLocation);
+    balls[0].r=7;
+    balls[0].color=colorBall();
+    balls[0].direction=1.55*Math.PI;
+    balls[0].speed=2.7;
+    startGame();
 }
 function startGame(){
     checkPause = false;

@@ -31,6 +31,7 @@ class Ball {
                         listObstacle[i][j].updateColorAndHPAfterHit();
                         if(listObstacle[i][j].hp==0){
                             listObstacle[i].splice(j,1);
+                            countNumbOfObstacle--;
                         }
                         plusScore();
                         showScoreInProcess();
@@ -44,6 +45,7 @@ class Ball {
                         listObstacle[i][j].updateColorAndHPAfterHit();
                         if(listObstacle[i][j].hp==0){
                             listObstacle[i].splice(j,1);
+                            countNumbOfObstacle--;
                         }
                         plusScore();
                         showScoreInProcess();
@@ -60,6 +62,7 @@ class Ball {
                             listObstacle[i][j].updateColorAndHPAfterHit();
                             if(listObstacle[i][j].hp==0){
                                 listObstacle[i].splice(j,1);
+                                countNumbOfObstacle--;
                             }
                             plusScore();
                             showScoreInProcess();
@@ -77,6 +80,7 @@ class Ball {
                             listObstacle[i][j].updateColorAndHPAfterHit();
                             if(listObstacle[i][j].hp==0){
                                 listObstacle[i].splice(j,1);
+                                countNumbOfObstacle--;
                             }
                             plusScore();
                             showScoreInProcess();
@@ -225,10 +229,8 @@ function restartGame(){
     checkGameOver=false;
     stopGame();
     countBalls=1;
-    listObstacle=[];
-    list1stObstacle=[];
-    list2ndObstacle=[];
-    list3rdObstacle=[];
+    resetObstacle();
+    countNumbOfObstacle=0;
     setObstacle();
    let tempBalls =[];
    tempBalls.push(new Ball(250,0,7));

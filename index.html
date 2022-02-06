@@ -6,7 +6,7 @@
     <style>
         *{margin: 0;padding: 0;}
         canvas{
-            top: 120px;
+            top: 125px;
             position: fixed;
         }
         button{
@@ -20,19 +20,20 @@
         }
     </style>
 
+
 </head>
 <body>
 <canvas id="canvas" width="500" height="500"  ></canvas>
 
 <span id="buttonStart"></span>
-<span>KindaMinus:<img id="shortBar" src="img/shorter1.png" style="width: 30px;height:20px" alt="img">ShorterBar;</span>
-<span><img id="slowBar" src="img/slow1.png" style="width: 30px;height:20px" alt="img">SlowerBar;</span>
+<span>KindaMinus:<img id="shortBar" src="img/shorter1.png" border="1" style="border-color: red;width: 30px;height:20px" alt="img">ShorterBar;</span>
+<span><img id="slowBar" src="img/slow1.png" border="1" style="border-color: red;width: 30px;height:20px" alt="img">SlowerBar;</span>
 <div><button onclick="stopGame()">Pause</button>
-    <span >KindaBoost:<img id="moreBall" src="img/plus1.png" style="width: 30px;height:30px" alt="img">PlusBall;</span>
-    <span ><img id="fastBall" src="img/boostSpeed2.png" style="width: 30px;height:30px"  alt="img">FasterBall;</span>
-    <span ><img id="bigBall" src="img/boost1.png" style="width: 30px;height:30px" alt="img">BiggerBall__</span>
-    <span ><img id="fastBar" src="img/boostSpeed3.png" style="width: 30px;height:20px"  alt="img">FasterBar;</span>
-    <span ><img id="longBar" src="img/longer1.png" style="width: 30px;height:20px" alt="img">LongerBar;</span>
+    <span >KindaBoost:<img id="moreBall" src="img/plus1.png" border="1" style="border-color: greenyellow;width: 30px;height:30px" alt="img">PlusBall;</span>
+    <span ><img id="fastBall" src="img/boostSpeed2.png" border="1" style="border-color: greenyellow;width: 30px;height:30px"  alt="img">FasterBall;</span>
+    <span ><img id="bigBall" src="img/boost1.png" border="1" style="border-color: greenyellow;width: 30px;height:30px" alt="img">BiggerBall__</span>
+    <span ><img id="fastBar" src="img/boostSpeed3.png" border="1" style="border-color: greenyellow;width: 30px;height:20px"  alt="img">FasterBar;</span>
+    <span ><img id="longBar" src="img/longer1.png" border="1" style="border-color: greenyellow;width: 30px;height:20px" alt="img">LongerBar;</span>
 
 </div>
 <br>
@@ -46,6 +47,8 @@
 <script src="js/Boost.js"></script>
 <script src="js/Ball.js"></script>
 <script src="js/Obstacle.js"></script>
+<script src="js/ObstacleLv1.js"></script>
+<script src="js/ObstacleLv2.js"></script>
 <script src="js/score.js"></script>
 <script src="js/js.js"></script>
 

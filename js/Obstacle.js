@@ -26,41 +26,7 @@ class Obstacle{
         this.getColor();
     }
 }
-let listObstacle=[];
-let list1stObstacle=[];
-let list2ndObstacle=[];
-let list3rdObstacle=[];
 
-function create1st6obstacle(){
-    list1stObstacle.push(new Obstacle(15,10,1))
-    for (let i = 1; i < 6; i++) {
-        let a = list1stObstacle[i-1].x+80;
-        list1stObstacle.push(new Obstacle(a,10,1))
-    }
-}
-function create2nd6obstacle(){
-    list2ndObstacle.push(new Obstacle(15,60,2))
-    for (let i = 1; i < 6; i++) {
-        let a = list2ndObstacle[i-1].x+80;
-        list2ndObstacle.push(new Obstacle(a,60,2))
-    }
-}
-function create3rd6obstacle(){
-    list3rdObstacle.push(new Obstacle(15,110,3))
-    for (let i = 1; i < 6; i++) {
-        let a = list3rdObstacle[i-1].x+80;
-        list3rdObstacle.push(new Obstacle(a,110,3))
-    }
-}
-setObstacle();
-function setObstacle() {
-    create1st6obstacle();
-    create2nd6obstacle();
-    create3rd6obstacle();
-    listObstacle.push(list1stObstacle);
-    listObstacle.push(list2ndObstacle);
-    listObstacle.push(list3rdObstacle);
-}
 function drawObstacleFunc(obj){
     context.fillStyle = obj.color;
     context.beginPath();
@@ -75,6 +41,53 @@ function drawObstacle(){
         }
     }
 }
+function setObstacle() {
+    create1st6obstacle();
+    create2nd6obstacle();
+    create3rd6obstacle();
+    listObstacle.push(list1stObstacle);
+    listObstacle.push(list2ndObstacle);
+    listObstacle.push(list3rdObstacle);
+}
+function resetObstacle(){
+    listObstacle=[];
+    list1stObstacle=[];
+    list2ndObstacle=[];
+    list3rdObstacle=[];
+}
+// stopGame();
+// checkGameOver = true;
+// addButtonStart2();
+// updateScore();
+// showHighScore();
+// document.getElementById("gameOver").innerText = 'GAME OVER';
+// subScore = 0;
+function checkWin(){
+    if(countNumbOfObstacle==0){
+        stopGame();
+        updateScore();
+        showHighScore();
+        if(levelGame==2){
+            document.getElementById("gameOver").innerText = 'Level '+levelGame+' Passed!';
+            addButtonStartFake();
+            return 1;
+            //End In Lv2;
+        }
+        addButtonStartLv2();
+        document.getElementById("gameOver").innerText = 'Level '+levelGame+' Passed!';
+        levelGame++;
+        setTimeout(clearAlert,2000);
+    }
+}
+function clearAlert(){
+    document.getElementById("gameOver").innerText ='';
+}
+let listObstacle=[];
+let list1stObstacle=[];
+let list2ndObstacle=[];
+let list3rdObstacle=[];
+let countNumbOfObstacle=0;
+
 // function draw1stObstacleFunc(obj){
 //     context.fillStyle = 'rgb(255,0,0)';
 //     context.beginPath();
