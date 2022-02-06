@@ -53,7 +53,7 @@ window.addEventListener("keydown",function (event){
             }
         }
     } else if (event.keyCode == 39){
-        if(bar.x+bar.length<=500){
+        if(bar.x+bar.length<=context.canvas.width){
             //kiểm soát để ball k vượt khung phải
             if(checkPause==false){
                 if(checkMove!=2){
@@ -89,5 +89,14 @@ window.addEventListener("keydown",function (event){
         }
         checkRelease=true;
     }
-
 } )
+function checkBallPositionStart() {
+    if (checkRelease == false) {
+        if (bar.x <= 0) {
+            clearTimeout(moveLeftBall);
+        }
+        if (bar.x + bar.length >= context.canvas.width) {
+            clearTimeout(moveRightBall);
+        }
+    }
+}

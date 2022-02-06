@@ -58,6 +58,7 @@ function startGame(){
         // draw1stObstacle();
         // draw2ndObstacle();
         // draw3rdObstacle();
+        checkBallPositionStart();
         ball.drawBallStart();
         checkBarPosition();
         drawBar();
