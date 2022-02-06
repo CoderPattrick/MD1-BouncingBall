@@ -248,6 +248,7 @@ function restartGame(){
    checkMoveBall=0;
    checkMove=0;
    subScore=0;
+   levelGame=1;
    showScoreInProcess();
    boosts=[];
    minusBoosts=[];
